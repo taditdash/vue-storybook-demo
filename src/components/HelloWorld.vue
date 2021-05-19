@@ -1,5 +1,8 @@
 <template>
   <div class="hello">
+
+    <task v-for="item in tasks" :task="item" :key="item.id"></task>
+
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
@@ -95,10 +98,24 @@
 </template>
 
 <script>
+import Task from './Task';
+
 export default {
   name: "HelloWorld",
+  components: {
+    Task
+  },
   props: {
     msg: String
+  },
+  data() {
+    return {
+      tasks: [
+        {"id":"1","title":"Test Task","state":"TASK_ARCHIVED","updatedAt":"2018-01-01T03:30:00.000Z"},
+        {"id":"2","title":"Test Task","state":"TASK_INBOX","updatedAt":"2018-01-01T03:30:00.000Z"},
+        {"id":"3","title":"Test Task","state":"TASK_PINNED","updatedAt":"2018-01-01T03:30:00.000Z"}
+      ]
+    };
   }
 };
 </script>
